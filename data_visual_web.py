@@ -4,11 +4,13 @@ import pandas as pd
 import base64
 from tqdm import tqdm
 
+
 # Function to generate a progress bar for TQDM
 @st.cache
 def tqdm_bar(total):
     pbar = tqdm(total=total)
     return pbar
+
 
 # Load the data into a Pandas DataFrame with TQDM
 @st.cache
@@ -23,11 +25,13 @@ def load_data():
     pbar.close()
     return pd.concat(data)
 
-# Add the web icon to the title bar
-st.markdown(
-    '<link rel="shortcut icon" type="image/x-icon" href="https://www.flaticon.com/free-icon/data-analytics_2103888">',
-    unsafe_allow_html=True,
-)
+
+# Set page title and favicon
+import streamlit as st
+
+st.set_page_config(page_title="Leonardo da visuals", page_icon=":file_folder:")
+
+
 
 # Add the logo to the app
 st.markdown(
@@ -35,28 +39,26 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
 # background image and designing
 
 
-
-#configuration
-st.set_option('deprecation.showfileUploaderEncoding',False)
+# configuration
+st.set_option('deprecation.showfileUploaderEncoding', False)
 # title of the webpage
 st.title("Leonardo Da Visual")
 st.caption("Data visualization is the representation of data through use of common graphics,"
-        " such as charts, plots, infographics, and even animations. These visual displays of information"
-        " communicate complex data relationships and data-driven insights in a way that is easy to understand.")
+           " such as charts, plots, infographics, and even animations. These visual displays of information"
+           " communicate complex data relationships and data-driven insights in a way that is easy to understand.")
 
 st.caption("This webpage is created to do simple data visualization in 5 simple graph"
-        " and tells story of the data.")
+           " and tells story of the data.")
 
-#creating the sidebar for uploading the data
+# creating the sidebar for uploading the data
 
-#creating tab to split the to concepts
-tab1,tab2, tab3, tab4= st.tabs(["data cleaning","story of given data ", " Data visualization","about us"])
+# creating tab to split the to concepts
+tab1, tab2, tab3, tab4 = st.tabs(["data cleaning", "story of given data ", " Data visualization", "about us"])
 with tab1:
-    #cleaning the raw into cleaned data...
+    # cleaning the raw into cleaned data...
 
     st.title("Data Cleaning with Streamlit")
 
@@ -100,7 +102,7 @@ with tab1:
 with tab2:
     st.title("Narrative Text Generation from CSV")
 
-    uploaded_file = st.file_uploader("Choose a CSV file", type=["csv","xlsx"])
+    uploaded_file = st.file_uploader("Choose a CSV file", type=["csv", "xlsx"])
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
@@ -216,26 +218,27 @@ with tab3:
         except Exception as e:
             print(e)
 
-
 with tab4:
     st.title("About us")
     st.subheader("Welcome to our Data Visualization App!")
-    st.caption('I am rishikesh vishwakarma future data engineer/standup comedian,and my app was created with the goal of providing'
-               ' a simple and intuitive platform for visualizing and exploring data in a meaningful way.')
+    st.caption(
+        'I am rishikesh vishwakarma future data engineer/standup comedian,and my app was created with the goal of providing'
+        ' a simple and intuitive platform for visualizing and exploring data in a meaningful way.')
     st.caption('I am dedicated to delivering the best possible user experience with the help of chatGPT,'
                ' and I am very constantly striving to improve our app based on user feedback. '
                'Our goal is to empower individuals and organizations to make informed decisions based on data.')
-    st.caption('The app was built using the latest technologies and is designed to be easy to use and highly customizable.'
-               ' Our proprietary algorithms and visualizations are designed to help users quickly identify patterns,'
-               ' trends, and insights in their data. We believe that data visualization should not only be functional but'
-               ' also beautiful and engaging, and that is why we put a strong emphasis on design.')
-    st.caption('In the future, we plan to expand the apps capabilities and add new features to make it even more powerful'
-               ' and useful. We are always looking for new ways to improve our app and provide the best possible experience '
-               'for our users.')
+    st.caption(
+        'The app was built using the latest technologies and is designed to be easy to use and highly customizable.'
+        ' Our proprietary algorithms and visualizations are designed to help users quickly identify patterns,'
+        ' trends, and insights in their data. We believe that data visualization should not only be functional but'
+        ' also beautiful and engaging, and that is why we put a strong emphasis on design.')
+    st.caption(
+        'In the future, we plan to expand the apps capabilities and add new features to make it even more powerful'
+        ' and useful. We are always looking for new ways to improve our app and provide the best possible experience '
+        'for our users.')
     st.caption('If you have any questions or feedback, please dont. Whould not love to hear that from you!')
 
-
-    #feedback form
+    # feedback form
     import streamlit as st
 
     st.text("Feedback Form")
@@ -247,5 +250,6 @@ with tab4:
     if st.button("Submit"):
         st.success("Thanks for the feedback, {}!".format(name))
 
-    st.caption('This is just a draft, and you can feel free to report it or additions to make it better fit your needs 👀')
+    st.caption(
+        'This is just a draft, and you can feel free to report it or additions to make it better fit your needs 👀')
     st.subheader('Visit again, buddy!🤞')
